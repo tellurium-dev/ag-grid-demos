@@ -367,14 +367,3 @@
   height: 50px;
   /* Adjust as needed for your header height */
 }
-
-:global(.ag-header) {
-  min-height: 56px !important;
-  height: 56px !important;
-  /* You can adjust 56px to your preferred height */
-}
-
-:global(.ag-header-row) {
-  min-height: 56px !important;
-  height: 56px !important;
-}

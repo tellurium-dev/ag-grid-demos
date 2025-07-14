@@ -176,14 +176,154 @@ export const InventoryExample: FunctionComponent<Props> = ({
           field: "title",
           cellRendererParams: { suppressCount: true },
           flex: 2,
+          cellStyle: (params: any) => {
+            const level = params.data.level;
+            console.log('Detail grid cellStyle called:', {
+              level,
+              field: params.colDef.field,
+              data: params.data,
+              nodeLevel: params.node?.level
+            });
+
+            // Only apply border to parent rows (level 0)
+            if (level === 0 || params.node?.level === 0) {
+              console.log('Applying blue border to parent row');
+              return {
+                borderLeft: '4px solid #00BFFF',
+                paddingLeft: '12px'
+              };
+            }
+            // Ensure child rows have no border
+            return {
+              borderLeft: 'none',
+              paddingLeft: '0px'
+            };
+          },
         },
         columnDefs: [
-          { field: "col1", filter: true, headerName: "Col1", flex: 1 },
-          { field: "col2", filter: true, headerName: "Col2", flex: 1 },
-          { field: "col3", filter: true, headerName: "Col3", flex: 1 },
-          { field: "col4", filter: true, headerName: "Col4", flex: 1 },
+          {
+            field: "col1",
+            filter: true,
+            headerName: "Col1",
+            flex: 1,
+            cellStyle: (params: any) => {
+              const value = params.value;
+              let alignment = 'left';
+              if (value !== null && value !== undefined && value !== '') {
+                const numValue = parseFloat(value);
+                if (!isNaN(numValue)) {
+                  alignment = 'right';
+                }
+              }
+              return {
+                textAlign: alignment,
+                borderRight: '2px solid rgb(193, 196, 197)'
+              };
+            },
+            valueFormatter: (params: any) => {
+              if (params.value === null || params.value === undefined || params.value === '') return '';
+              const numValue = parseFloat(params.value);
+              if (isNaN(numValue)) return params.value.toString();
+              return numValue.toString();
+            }
+          },
+          {
+            field: "col2",
+            filter: true,
+            headerName: "Col2",
+            flex: 1,
+            cellStyle: (params: any) => {
+              const value = params.value;
+              let alignment = 'left';
+              if (value !== null && value !== undefined && value !== '') {
+                const numValue = parseFloat(value);
+                if (!isNaN(numValue)) {
+                  alignment = 'right';
+                }
+              }
+              return {
+                textAlign: alignment,
+                borderRight: '2px solid rgb(193, 196, 197)'
+              };
+            },
+            valueFormatter: (params: any) => {
+              if (params.value === null || params.value === undefined || params.value === '') return '';
+              const numValue = parseFloat(params.value);
+              if (isNaN(numValue)) return params.value.toString();
+              return numValue.toString();
+            }
+          },
+          {
+            field: "col3",
+            filter: true,
+            headerName: "Col3",
+            flex: 1,
+            cellStyle: (params: any) => {
+              const value = params.value;
+              let alignment = 'left';
+              if (value !== null && value !== undefined && value !== '') {
+                const numValue = parseFloat(value);
+                if (!isNaN(numValue)) {
+                  alignment = 'right';
+                }
+              }
+              return {
+                textAlign: alignment,
+                borderRight: '2px solid rgb(193, 196, 197)'
+              };
+            },
+            valueFormatter: (params: any) => {
+              if (params.value === null || params.value === undefined || params.value === '') return '';
+              const numValue = parseFloat(params.value);
+              if (isNaN(numValue)) return params.value.toString();
+              return numValue.toString();
+            }
+          },
+          {
+            field: "col4",
+            filter: true,
+            headerName: "Col4",
+            flex: 1,
+            cellStyle: (params: any) => {
+              const value = params.value;
+              let alignment = 'left';
+              if (value !== null && value !== undefined && value !== '') {
+                const numValue = parseFloat(value);
+                if (!isNaN(numValue)) {
+                  alignment = 'right';
+                }
+              }
+              return {
+                textAlign: alignment,
+                borderRight: 'none'
+              };
+            },
+            valueFormatter: (params: any) => {
+              if (params.value === null || params.value === undefined || params.value === '') return '';
+              const numValue = parseFloat(params.value);
+              if (isNaN(numValue)) return params.value.toString();
+              return numValue.toString();
+            }
+          },
         ],
         groupDefaultExpanded: 0,
+        // Add custom CSS for detail grid borders
+        overlayLoadingTemplate: `
+          <style>
+            .ag-theme-balham .ag-cell {
+              border-right: 1px solid #c8c6c4 !important;
+            }
+            .ag-theme-balham .ag-cell:last-child {
+              border-right: none !important;
+            }
+            .ag-theme-balham .ag-header-cell {
+              border-right: 1px solid #c8c6c4 !important;
+            }
+            .ag-theme-balham .ag-header-cell:last-child {
+              border-right: none !important;
+            }
+          </style>
+        `,
       },
       getDetailRowData: ({ successCallback, data }: GetDetailRowDataParams) => {
         // Recursively add a 'path' property to each node
@@ -230,6 +370,25 @@ export const InventoryExample: FunctionComponent<Props> = ({
 
   return (
     <div className={styles.wrapper}>
+      <style>
+        {`
+          /* Detail grid column separation - only for detail grid */
+          .ag-theme-balham .ag-detail-grid .ag-cell {
+            border-right: 2px solid #ff0000 !important;
+            border-radius: 20px !important;
+          }
+          .ag-theme-balham .ag-detail-grid .ag-cell:last-child {
+            border-right: none !important;
+          }
+          .ag-theme-balham .ag-detail-grid .ag-header-cell {
+            border-right: 2px solid #ff0000 !important;
+            border-radius: 20px !important;
+          }
+          .ag-theme-balham .ag-detail-grid .ag-header-cell:last-child {
+            border-right: none !important;
+          }
+        `}
+      </style>
       <div className={styles.container}>
         <div className={styles.exampleHeader}>
           <div className={styles.tabs}>

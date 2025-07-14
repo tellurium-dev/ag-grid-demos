@@ -36,91 +36,91 @@ export function getData() {
           },
           {
             "title": "Total Colors",
-            "col1": "4",
-            "col2": "4",
-            "col3": "4",
-            "col4": "4",
+            "col1": 4,
+            "col2": 4,
+            "col3": 4,
+            "col4": 4,
             children: [
               {
                 "title": "color per version",
-                "col1": "4",
-                "col2": "4",
-                "col3": "4",
-                "col4": "4"
+                "col1": 4,
+                "col2": 4,
+                "col3": 4,
+                "col4": 4
               },
               {
                 "title": "number of versions / copies",
-                "col1": "1",
-                "col2": "1",
-                "col3": "1",
-                "col4": "1"
+                "col1": 1,
+                "col2": 1,
+                "col3": 1,
+                "col4": 1
               }
             ]
           },
 
           {
             "title": "Layout Across",
-            "col1": "4",
-            "col2": "4",
-            "col3": "1",
-            "col4": "1"
+            "col1": 4,
+            "col2": 4,
+            "col3": 1,
+            "col4": 1
           },
           {
             "title": "Quantity",
-            "col1": "0",
-            "col2": "45",
-            "col3": "1",
-            "col4": "1"
+            "col1": 0,
+            "col2": 45,
+            "col3": 1,
+            "col4": 1
           },
           {
             "title": "Stock",
 
             "col2": 590,
-            "col3": "1",
-            "col4": "1",
+            "col3": 1,
+            "col4": 1,
             children: [
 
               {
                 "title": "Stock Width",
-                "col1": "8",
-                "col2": "8",
-                "col3": "1",
-                "col4": "1"
+                "col1": 8,
+                "col2": 8,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "Quantity Margin",
-                "col1": "0.2",
-                "col2": "0.2",
-                "col3": "1",
-                "col4": "1"
+                "col1": 0.2,
+                "col2": 0.2,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "Quantity (Stock)",
-                "col1": "",
-                "col2": "13.5",
-                "col3": "1",
-                "col4": "1"
+                "col1": 0,
+                "col2": 13.5,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "Repeat",
-                "col1": "10.5",
-                "col2": "10.5",
-                "col3": "1",
-                "col4": "1"
+                "col1": 0.5,
+                "col2": 10.5,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "Cost per MSI (Stock)",
-                "col1": "0.52",
-                "col2": "0.52",
-                "col3": "1",
-                "col4": "1"
+                "col1": 0.52,
+                "col2": 0.52,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "MSI (Stock)",
-                "col1": "",
-                "col2": "1134",
-                "col3": "1",
-                "col4": "1"
+                "col1": 0,
+                "col2": 1134,
+                "col3": 1,
+                "col4": 1
               }]
           },
           {
@@ -128,22 +128,22 @@ export function getData() {
             children: [
               {
                 "title": "width",
-                "col1": "8",
-                "col2": "0.2",
-                "col3": "1",
-                "col4": "1"
+                "col1": 8,
+                "col2": 0.2,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "Quantity Margin (Cold Foil)",
-                "col1": "0.2",
-                "col3": "1",
-                "col4": "1"
+                "col1": 0.2,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "Quantity",
-                "col1": "",
-                "col3": "1",
-                "col4": "1"
+                "col1": null,
+                "col3": 1,
+                "col4": 1
               },
               {
                 "title": "Repeat",

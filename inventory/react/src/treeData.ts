@@ -1,6 +1,4 @@
-import { Children } from "react";
-
-export function getData() {
+export function getTreeData() {
   const data = [
     {
       path: ["Machine Type"],
@@ -90,4 +88,4 @@ export function getData() {
 
   ];
   return data;
-}
+} 
