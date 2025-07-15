@@ -120,6 +120,17 @@ export function TreeViewGrid() {
       flex: 1,
       editable: isEditableCell,
       cellClass: getCellClass,
+      cellStyle: (params: any) => {
+        const value = params.value;
+        let alignment = 'left';
+        if (value !== null && value !== undefined && value !== '') {
+          const numValue = parseFloat(value);
+          if (!isNaN(numValue)) {
+            alignment = 'right';
+          }
+        }
+        return { textAlign: alignment };
+      },
       valueFormatter: (params) => {
         if (params.value === undefined || params.value === null) return '';
         return params.value.toString();
@@ -131,6 +142,17 @@ export function TreeViewGrid() {
       flex: 1,
       editable: isEditableCell,
       cellClass: getCellClass,
+      cellStyle: (params: any) => {
+        const value = params.value;
+        let alignment = 'left';
+        if (value !== null && value !== undefined && value !== '') {
+          const numValue = parseFloat(value);
+          if (!isNaN(numValue)) {
+            alignment = 'right';
+          }
+        }
+        return { textAlign: alignment };
+      },
       valueFormatter: (params) => {
         if (params.value === undefined || params.value === null) return '';
         return params.value.toString();
@@ -207,26 +229,38 @@ export function TreeViewGrid() {
       </div>
       <style>
         {`
-          .ag-theme-balham .ag-header-cell {
-            border-right: 1px solid #c8c6c4;
+          .ag-theme-balham .ag-header-cell,
+          .ag-theme-balham .ag-header-cell * {
+            border-right: none !important;
+            border-bottom: none !important;
+            margin: 2 1px !important;
           }
-          .ag-theme-balham .ag-cell {
-            border-right: 1px solid #c8c6c4;
+          .ag-theme-balham .ag-cell,
+          .ag-theme-balham .ag-cell * {
+            border-right: none !important;
+            border-bottom: none !important;
+            margin: 1 1px !important;
           }
           .ag-theme-balham .ag-header-cell:last-child,
           .ag-theme-balham .ag-cell:last-child {
-            border-right: none;
+            border-right: none !important;
+          }
+          .ag-theme-balham .ag-row {
+            border-bottom: none !important;
+          }
+          .ag-theme-balham .ag-row * {
+            border-bottom: none !important;
           }
           .ag-theme-balham .editable-cell {
-            background: #f0f0f0 !important;
+            background: #B9D9EB !important;
             color: #333 !important;
-            border: 1px solid rgb(211, 208, 208) !important;
+            border: 1px solid white !important;
             border-radius: 6px;
             box-shadow: 0 2px 4px rgba(0, 191, 255, 0.2);
             font-weight: 500;
           }
           .ag-theme-balham .editable-cell:hover {
-            background: #00BFFF !important;
+            background: #20bdf1 !important;
             color: white !important;
             border: 2px solid #00BFFF !important;
             border-radius: 6px;
@@ -235,7 +269,7 @@ export function TreeViewGrid() {
           .ag-theme-balham .editable-cell.ag-cell-edit-input {
             background: #ffffff !important;
             color: #333 !important;
-            border: 2px solid #00BFFF !important;
+            
             border-radius: 6px;
             box-shadow: 0 0 0 3px rgba(213, 237, 245, 0.2), 0 3px 8px rgba(0, 0, 0, 0.15);
           }
@@ -256,7 +290,7 @@ export function TreeViewGrid() {
             z-index: 10;
           }
           .ag-theme-balham .ag-cell.parent-name-cell:hover {
-            border-left: 8px solid #b0b0b0 !important;
+            
           }
           @keyframes pulse {
             0% { opacity: 0.6; }

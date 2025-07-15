@@ -80,13 +80,25 @@ export const InventoryExample: FunctionComponent<Props> = ({
 
   const [colDefs] = useState<ColDef[]>([
     {
+      headerName: "",
+      field: "checkbox",
+      headerCheckboxSelection: true,
+      checkboxSelection: true,
+      width: 50,
+      minWidth: 50,
+      maxWidth: 50,
+      pinned: "left",
+      sortable: false,
+      filter: false,
+    },
+    {
       field: "actions",
       headerName: "Actions",
       cellRenderer: ActionsCellRenderer,
       cellClass: "cell-actions",
-      width: 180,
+      width: 200,
 
-      minWidth: 180,
+      minWidth: 200,
 
     }
     ,
@@ -148,7 +160,7 @@ export const InventoryExample: FunctionComponent<Props> = ({
   const [rowData] = useState(getData());
   const defaultColDef = useMemo<ColDef>(
     () => ({
-      resizable: false,
+      resizable: true,
     }),
     []
   );
@@ -160,11 +172,21 @@ export const InventoryExample: FunctionComponent<Props> = ({
   );
   const themeClass = isDarkMode ? `${gridTheme}-dark` : gridTheme;
   const [quickFilterText, setQuickFilterText] = useState<string>();
+  const [selectedRows, setSelectedRows] = useState<any[]>([]);
+
   const onFilterTextBoxChanged = useCallback(
     ({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
       setQuickFilterText(value),
     []
   );
+
+  const onSelectionChanged = useCallback(() => {
+    if (gridRef.current) {
+      const selectedNodes = gridRef.current.api.getSelectedNodes();
+      const selectedData = selectedNodes.map((node: any) => node.data);
+      setSelectedRows(selectedData);
+    }
+  }, []);
 
   const detailCellRendererParams = useMemo(
     () => ({
@@ -442,6 +464,18 @@ export const InventoryExample: FunctionComponent<Props> = ({
                 onInput={onFilterTextBoxChanged}
               />
             </div>
+            {selectedRows.length > 0 && (
+              <div style={{
+                padding: "8px 12px",
+                background: "#e3f2fd",
+                color: "#1976d2",
+                borderRadius: 4,
+                fontSize: "0.875rem",
+                fontWeight: "500"
+              }}>
+                {selectedRows.length} item{selectedRows.length !== 1 ? 's' : ''} selected
+              </div>
+            )}
             <button
               className={styles.newButton}
               style={{
@@ -472,6 +506,55 @@ export const InventoryExample: FunctionComponent<Props> = ({
             >
               + New
             </button>
+            <button
+              style={{
+                padding: "8px 12px",
+                background: "#fff",
+                color: "#d32f2f",
+                border: "1px solid #d32f2f",
+                borderRadius: 4,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                fontSize: "0.875rem",
+              }}
+              onClick={() => {
+                // Handle PDF download logic here
+                console.log("Download PDF clicked");
+                if (selectedRows.length > 0) {
+                  console.log("Selected rows for PDF:", selectedRows);
+                } else {
+                  console.log("No rows selected for PDF download");
+                }
+              }}
+              title="Download PDF"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 16L12 8M12 8L15 11M12 8L9 11"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M3 15V16C3 18.8284 3 20.2426 3.87868 21.1213C4.75736 22 6.17157 22 9 22H15C17.8284 22 19.2426 22 20.1213 21.1213C21 20.2426 21 18.8284 21 16V15"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              PDF
+            </button>
+
           </div>
         </div>
         <div className={`${themeClass} ${styles.grid}`}>
@@ -492,6 +575,8 @@ export const InventoryExample: FunctionComponent<Props> = ({
             detailRowAutoHeight
             allowDragFromColumnsToolPanel={true}
             rowGroupPanelShow="always"
+            rowSelection="multiple"
+            onSelectionChanged={onSelectionChanged}
           />
         </div>
       </div>

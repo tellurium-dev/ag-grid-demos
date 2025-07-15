@@ -1,5 +1,3 @@
-import { Children } from "react";
-
 export function getData() {
   const data = [
     {

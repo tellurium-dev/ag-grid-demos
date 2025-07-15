@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { InventoryExample } from './InventoryExample';
 import { TreeViewPage } from './TreeViewPage';
 import styles from './InventoryExample.module.css';
